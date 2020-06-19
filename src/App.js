@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./assets/styles/App.scss";
 import FirstComponent from "./components/FirstComponent";
 
 function App() {

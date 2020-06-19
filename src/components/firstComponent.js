@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import React from "react";
+import '../assets/styles/FirstComponent.scss'
 
 export default function FirstComponent() {
   return (
