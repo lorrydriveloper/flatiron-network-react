@@ -16,29 +16,29 @@ export default class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
-    // let configurationObject = {
-    //   method: "Post",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //   },
-    //   body: JSON.stringify(this.state),
-    // };
-    // fetch("http://localhost:3001/api/v1/login", configurationObject)
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     console.log(json);
+    let configurationObject = {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(this.state),
+    };
+    fetch("http://localhost:3001/api/v1/login", configurationObject)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
 
-    //     this.setState({
-    //       password: "",
-    //       email: "",
-    //     });
-    //   });
+        this.setState({
+          password: "",
+          email: "",
+        });
+      });
   };
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <Floatlabelinput
           resource="email"
           onChange={this.handleChange}
@@ -49,6 +49,7 @@ export default class Login extends Component {
           onChange={this.handleChange}
           value={this.state.password}
         />
+        <button type="submit">Login</button>
       </form>
     );
   }
