@@ -28,13 +28,21 @@ class Login extends Component {
     fetch("http://localhost:3001/api/v1/login", configurationObject)
       .then((res) => res.json())
       .then((json) => {
+        if (json.error) {
+          throw new Error(json.error + " " + json.message);
+        }
         this.props.storeUser(json.user);
+        localStorage.setItem("token", json.jwt);
+
         this.setState({
           password: "",
           email: "",
         });
-        localStorage.setItem("token", json.jwt);
         this.props.history.push("/home");
+      })
+      .catch((error) => {
+        // TODO: change color of input and alert user of the error
+        console.log(error);
       });
   };
 
