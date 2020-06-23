@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Floatlabelinput from "./FloatLabelInput";
 import "../assets/styles/SignUpForm.scss";
 import CohortOption from "./CohortOption";
+import { connect } from "react-redux";
+import StoreUser from "../actions/StoreUser";
 
-export default class Signup extends Component {
+class Signup extends Component {
   state = {
     name: "",
     surname: "",
@@ -27,7 +29,6 @@ export default class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
     let configurationObject = {
       method: "Post",
       headers: {
@@ -39,8 +40,9 @@ export default class Signup extends Component {
     fetch("http://localhost:3001/api/v1/sign_up", configurationObject)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
-
+        this.props.storeUser(json.user);
+        localStorage.setItem("token", json.jwt);
+        this.props.history.push("/home");
         this.setState({
           ...this.state,
           name: "",
@@ -158,3 +160,8 @@ export default class Signup extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  storeUser: (user) => dispatch(StoreUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Signup); 

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Floatlabelinput from "./FloatLabelInput";
+import { connect } from "react-redux";
+import StoreUser from "../actions/StoreUser";
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     email: "",
     password: "",
@@ -15,7 +17,6 @@ export default class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
     let configurationObject = {
       method: "Post",
       headers: {
@@ -27,8 +28,9 @@ export default class Login extends Component {
     fetch("http://localhost:3001/api/v1/login", configurationObject)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
-
+        this.props.storeUser(json.user);
+        localStorage.setItem("token", json.jwt);
+        this.props.history.push("/home");
         this.setState({
           password: "",
           email: "",
@@ -54,3 +56,9 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  storeUser: (user) => dispatch(StoreUser(user)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
