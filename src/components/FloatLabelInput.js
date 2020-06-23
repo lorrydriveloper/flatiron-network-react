@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/styles/FloatLabelInput.scss";
 
-export default function Floatlabelinput({ type = "text", resource, onChange, value }) {
+export default function Floatlabelinput({ type = "text", resource, onChange, value, required=true }) {
   return (
     <div className="float_label">
       <input
@@ -9,7 +9,7 @@ export default function Floatlabelinput({ type = "text", resource, onChange, val
         id={resource}
         name={resource}
         onChange={onChange}
-        required={true}
+        required={required}
         value={value}
       />
       <label htmlFor={resource}>{resource.replace('_',' ')}</label>
