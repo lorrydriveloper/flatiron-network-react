@@ -29,12 +29,12 @@ class Login extends Component {
       .then((res) => res.json())
       .then((json) => {
         this.props.storeUser(json.user);
-        localStorage.setItem("token", json.jwt);
-        this.props.history.push("/home");
         this.setState({
           password: "",
           email: "",
         });
+        localStorage.setItem("token", json.jwt);
+        this.props.history.push("/home");
       });
   };
 
