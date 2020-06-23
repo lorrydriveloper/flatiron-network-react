@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Floatlabelinput from "./FloatLabelInput";
+import "../assets/styles/SignUpForm.scss";
+import CohortOption from "./CohortOption";
 
 export default class Signup extends Component {
   state = {
@@ -7,13 +9,14 @@ export default class Signup extends Component {
     surname: "",
     password: "",
     email: "",
-    plus_code: "",
+    plus_code:"",
     street: "",
     city: "",
     postcode: "",
     state: "",
     country: "",
-    cohort: 1,
+    cohort_id: "",
+    cohorts: [],
   };
 
   handleChange = (e) => {
@@ -39,6 +42,7 @@ export default class Signup extends Component {
         console.log(json);
 
         this.setState({
+          ...this.state,
           name: "",
           surname: "",
           password: "",
@@ -49,17 +53,29 @@ export default class Signup extends Component {
           postcode: "",
           state: "",
           country: "",
-          cohort: 1,
+          cohort: "",
         });
       });
   };
 
+  componentDidMount() {
+    fetch("http://localhost:3001/api/v1/cohorts")
+      .then((res) => res.json())
+      .then((json) =>
+        this.setState({
+          ...this.state,
+          cohorts: json,
+        })
+      );
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <h1>Sign Up</h1>
+        <form onSubmit={this.handleSubmit} className="signup-form">
           <div>
-            <h1>Personal info</h1>
+            <h2>Personal info</h2>
             <Floatlabelinput
               resource="name"
               onChange={this.handleChange}
@@ -84,18 +100,55 @@ export default class Signup extends Component {
             />
           </div>
           <div>
-            <h1>Your Location</h1>
+            <h2>Your Location</h2>
             <Floatlabelinput
               resource="plus_code"
               onChange={this.handleChange}
               value={this.state.plus_code}
+              required={false}
+            />
+            <h2>or</h2>
+            <Floatlabelinput
+              resource="street"
+              onChange={this.handleChange}
+              value={this.state.street}
+              required={false}
+            />
+            <Floatlabelinput
+              resource="city"
+              onChange={this.handleChange}
+              value={this.state.city}
+              required={false}
+            />
+            <Floatlabelinput
+              resource="postcode"
+              onChange={this.handleChange}
+              value={this.state.postcode}
+              required={false}
+            />
+            <Floatlabelinput
+              resource="state"
+              onChange={this.handleChange}
+              value={this.state.state}
+              required={false}
+            />
+            <Floatlabelinput
+              resource="country"
+              onChange={this.handleChange}
+              value={this.state.country}
+              required={false}
             />
           </div>
           <div>
-            You Cohort
-            <select>
+            <h2>You Cohort</h2>
+            <select
+              onChange={this.handleChange}
+              onBlur={this.handleChange}
+              name="cohort_id"
+            >
+              <option>Select you cohort</option>
               {this.state.cohorts.map((cohort) => (
-                <option>{cohort}</option>
+                <CohortOption key={cohort.id} {...cohort} />
               ))}
             </select>
           </div>
