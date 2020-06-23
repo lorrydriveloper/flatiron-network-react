@@ -1,0 +1,87 @@
+.float_label {
+  position: relative;
+  font-size: 20px;
+  width: 500px;
+  & input {
+    height: 25px;
+    width: 65%;
+    margin-top: 30px;
+    border-radius: 21px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 20px;
+    color: grey;
+    &:focus + label,
+    &:valid + label{
+      text-transform: uppercase;
+      transform: translate(-10px, -25px);
+      font-size: 15px;
+      color: #01cfc7;
+    }
+  }
+  & label {
+    position: absolute;
+    font-weight: 800;
+    font-size: 20px;
+    bottom: 5px;
+    left: 20%;
+    color: grey;
+    transition: all, 0.5s;
+  }
+}
+
+// .float-label {
+//   position: relative;
+//   height: 60px;
+// }
+// .float-label input[name="remote_work"] + label {
+//   cursor: pointer;
+//   display: block;
+//   background-color: grey;
+//   padding: 10px;
+//   bottom: -30px;
+//   border-radius: 10px 0 0 10px;
+// }
+// .float-label input[name="remote_work"]:nth-last-of-type(2) + label {
+//   margin-left: 105px;
+//   border-radius: 0 10px 10px 0;
+// }
+// .float-label input[name="remote_work"]:checked + label {
+//   background-color: #03cfc6;
+//   color: grey;
+// }
+
+// .float-label label {
+//   position: absolute;
+//   font-weight: 800;
+//   font-size: 20px;
+//   bottom: 5px;
+//   left: 22%;
+//   color: grey;
+//   transition: all, 0.5s;
+// }
+
+// .float-label input {
+//   border: none;
+//   height: 25px;
+//   width: 65%;
+//   margin-top: 30px;
+//   border-radius: 21px;
+//   outline: none;
+//   padding-left: 10px;
+//   font-size: 20px;
+//   color: grey;
+// }
+
+// .float-label input:valid,
+// .float-label input:focus {
+//   border: 2px solid #01cfc7;
+// }
+
+// .float-label input:focus + label,
+// .float-label input:valid + label {
+//   text-transform: uppercase;
+//   transform: translate(-10px, -25px);
+//   font-size: 15px;
+//   color: #01cfc7;
+// }
