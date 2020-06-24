@@ -1,5 +1,5 @@
-import React from "react";
-import "./assets/styles/App.scss";
+import React, { useState } from "react";
+import "./assets/styles/main.scss";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -8,13 +8,16 @@ import Map from "./pages/Map";
 import Networking from "./pages/Networking";
 import Profile from "./pages/Profile";
 import Protectedroute from "./helpers/ProtectedRoute";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import { connect } from "react-redux";
 
-
-function App() {
+function App(props) {
   return (
     <Router>
       <div className="App">
-        <h1>Flatiron Network</h1>
+        <Route component={Header} />
+        {props.auth ? <Navbar /> : null}
         <Switch>
           <Protectedroute path="/Map" component={Map} />
           <Protectedroute path="/Networking" component={Networking} />
@@ -31,4 +34,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(App);
