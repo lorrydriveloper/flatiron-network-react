@@ -1,0 +1,20 @@
+.home {
+  width: 100%;
+  height: 92%;
+  position: relative;
+}
+
+.section__link {
+  display: inline-block;
+  width: 40%;
+  max-width: 30rem;
+  margin: 1rem;
+  background: $gradient-background;
+  border-radius: $border-radius;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+}
