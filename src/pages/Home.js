@@ -3,12 +3,7 @@ import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
-    if (!localStorage.token) {
-      this.props.history.push("/");
-      return null;
-    } else {
     return <div>Welcome {this.props.user.name}</div>;
-    }
   }
 }
 
