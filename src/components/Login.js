@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Floatlabelinput from "./FloatLabelInput";
 import { connect } from "react-redux";
-import StoreUser from "../actions/StoreUser";
+import storeUser from "../actions/StoreUser";
+import { login } from "../actions/Auth";
 
 class Login extends Component {
   state = {
@@ -38,6 +39,7 @@ class Login extends Component {
           password: "",
           email: "",
         });
+        this.props.login();
         this.props.history.push("/");
       })
       .catch((error) => {
@@ -65,8 +67,4 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  storeUser: (user) => dispatch(StoreUser(user)),
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, { storeUser, login })(Login);
