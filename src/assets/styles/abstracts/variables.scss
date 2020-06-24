@@ -1,7 +1,18 @@
-$color-prymary: #55c57a;
-$color-prymary-light: #7ed56f;
-$color-prymary-dark: #28b485;
-$blue: blue;
 
-$gradient-background: linear-gradient(to left, #00d2c8, #1a8a9d);
+$color-prymary: #05afe0;
+$color-prymary-light:  #00d2c8;
+$color-prymary-dark: #1a8a9d;
+
+$light-color: #fff;
+
+
+
+$gradient-background: linear-gradient(to left,$color-prymary-dark, $color-prymary-light);
 $border-radius: 2rem;
+
+
+$text-shadow: 0px 4px 4px #00000040,
+0px 4px 4px #00000040,
+0px 4px 4px #00000040;
+$box-shadow: 4px 5px 15px #00000040,
+0px 4px 4px #00000040;
