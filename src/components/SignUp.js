@@ -56,7 +56,7 @@ class Signup extends Component {
           cohort: "",
         });
         localStorage.setItem("token", json.jwt);
-        this.props.history.push("/home");
+        this.props.history.push("/");
       });
   };
 

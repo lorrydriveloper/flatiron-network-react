@@ -38,7 +38,7 @@ class Login extends Component {
           password: "",
           email: "",
         });
-        this.props.history.push("/home");
+        this.props.history.push("/");
       })
       .catch((error) => {
         // TODO: change color of input and alert user of the error
