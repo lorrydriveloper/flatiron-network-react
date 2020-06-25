@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-import Floatlabelinput from "./FloatLabelInput";
-import "../assets/styles/SignUpForm.scss";
-import CohortOption from "./CohortOption";
 import { connect } from "react-redux";
-import StoreUser from "../actions/StoreUser";
+import storeUser from "../actions/StoreUser";
+import PersonalInfo from "../helpers/PersonalInfo";
+import LocationInfo from "../helpers/LocationInfo";
+import CohortInfo from "../helpers/CohortInfo";
+import { login } from "../actions/Auth";
+import { BASEURL } from "../helpers/BaseURL";
 
 class Signup extends Component {
   state = {
+    step: 1,
     name: "",
     surname: "",
     password: "",
     email: "",
+    cohort_id: "",
     plus_code: "",
     street: "",
     city: "",
     postcode: "",
     state: "",
     country: "",
-    cohort_id: "",
+
     cohorts: [],
   };
 
@@ -27,41 +31,66 @@ class Signup extends Component {
     });
   };
 
+  nextStep = () => {
+    this.setState({
+      ...this.state,
+      step: this.state.step + 1,
+    });
+  };
+
+  prevStep = () => {
+    this.setState({
+      ...this.state,
+      step: this.state.step - 1,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
+
     let configurationObject = {
       method: "Post",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        user: {
+          name: this.state.name,
+          surname: this.state.surname,
+          email: this.state.email,
+          password: this.state.password,
+          cohort_id: this.state.cohort_id,
+        },
+        location: {
+          plus_code: this.state.plus_code,
+          street: this.state.street,
+          postalcode: this.state.postalcode,
+          city: this.state.city,
+          state: this.state.state,
+          country: this.state.country,
+        },
+      }),
     };
-    fetch("http://localhost:3001/api/v1/sign_up", configurationObject)
+    fetch(BASEURL + "sign_up", configurationObject)
       .then((res) => res.json())
       .then((json) => {
+        if (json.error) {
+          throw new Error(json.error + " " + json.message);
+        }
         this.props.storeUser(json.user);
-        this.setState({
-          ...this.state,
-          name: "",
-          surname: "",
-          password: "",
-          email: "",
-          plus_code: "",
-          street: "",
-          city: "",
-          postcode: "",
-          state: "",
-          country: "",
-          cohort: "",
-        });
         localStorage.setItem("token", json.jwt);
-        this.props.history.push("/");
+        this.props.login();
+      })
+      .catch((error) => {
+        // TODO: change color of input and alert user of the error
+        alert(error);
+        console.log(error);
       });
   };
 
   componentDidMount() {
-    fetch("http://localhost:3001/api/v1/cohorts")
+    fetch(BASEURL + "cohorts")
       .then((res) => res.json())
       .then((json) =>
         this.setState({
@@ -72,99 +101,50 @@ class Signup extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit} className="signup-form">
+    const { step } = this.state;
+    switch (step) {
+      case 1:
+        return (
+          <PersonalInfo
+            toggle={this.props.toggle}
+            nextStep={this.nextStep}
+            onChange={this.handleChange}
+            values={this.state}
+          />
+        );
+      case 2:
+        return (
+          <LocationInfo
+            toggle={this.props.toggle}
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            onChange={this.handleChange}
+            values={this.state}
+          />
+        );
+      case 3:
+        return (
+          <CohortInfo
+            toggle={this.props.toggle}
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            values={this.state}
+          />
+        );
+      case 4:
+        return (
           <div>
-            <h2>Personal info</h2>
-            <Floatlabelinput
-              resource="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-            />
-            <Floatlabelinput
-              resource="surname"
-              onChange={this.handleChange}
-              value={this.state.surname}
-            />
-            <Floatlabelinput
-              type="password"
-              resource="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-            <Floatlabelinput
-              type="email"
-              resource="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
+            <h1>Page 4</h1>
+            <button onClick={this.prevStep}>Back</button>{" "}
           </div>
-          <div>
-            <h2>Your Location</h2>
-            <Floatlabelinput
-              resource="plus_code"
-              onChange={this.handleChange}
-              value={this.state.plus_code}
-              required={false}
-            />
-            <h2>or</h2>
-            <Floatlabelinput
-              resource="street"
-              onChange={this.handleChange}
-              value={this.state.street}
-              required={false}
-            />
-            <Floatlabelinput
-              resource="city"
-              onChange={this.handleChange}
-              value={this.state.city}
-              required={false}
-            />
-            <Floatlabelinput
-              resource="postcode"
-              onChange={this.handleChange}
-              value={this.state.postcode}
-              required={false}
-            />
-            <Floatlabelinput
-              resource="state"
-              onChange={this.handleChange}
-              value={this.state.state}
-              required={false}
-            />
-            <Floatlabelinput
-              resource="country"
-              onChange={this.handleChange}
-              value={this.state.country}
-              required={false}
-            />
-          </div>
-          <div>
-            <h2>You Cohort</h2>
-            <select
-              onChange={this.handleChange}
-              onBlur={this.handleChange}
-              name="cohort_id"
-            >
-              <option>Select you cohort</option>
-              {this.state.cohorts.map((cohort) => (
-                <CohortOption key={cohort.id} {...cohort} />
-              ))}
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <button onClick={() => this.props.login(true)}>
-          Have an account login
-        </button>
-      </div>
-    );
+        );
+
+      default:
+        return <h1>default</h1>;
+    }
   }
 }
-const mapDispatchToProps = (dispatch) => ({
-  storeUser: (user) => dispatch(StoreUser(user)),
-});
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(null, { storeUser, login })(Signup);
