@@ -50,19 +50,22 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Floatlabelinput
-          resource="email"
-          onChange={this.handleChange}
-          value={this.state.email}
-        />
-        <Floatlabelinput
-          resource="password"
-          onChange={this.handleChange}
-          value={this.state.password}
-        />
-        <button type="submit">Login</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <Floatlabelinput
+            resource="email"
+            onChange={this.handleChange}
+            value={this.state.email}
+          />
+          <Floatlabelinput
+            resource="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+          <button type="submit">Login</button>
+        </form>
+        <button onClick={() => this.props.signup()}>Create new account</button>
+      </div>
     );
   }
 }

@@ -11,7 +11,7 @@ class Signup extends Component {
     surname: "",
     password: "",
     email: "",
-    plus_code:"",
+    plus_code: "",
     street: "",
     city: "",
     postcode: "",
@@ -156,6 +156,9 @@ class Signup extends Component {
           </div>
           <button type="submit">Sign Up</button>
         </form>
+        <button onClick={() => this.props.login(true)}>
+          Have an account login
+        </button>
       </div>
     );
   }
@@ -164,4 +167,4 @@ const mapDispatchToProps = (dispatch) => ({
   storeUser: (user) => dispatch(StoreUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(Signup); 
+export default connect(null, mapDispatchToProps)(Signup);

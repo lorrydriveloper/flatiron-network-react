@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import "./assets/styles/main.scss";
-
+import React from "react";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Authpage from "./pages/AuthPage";
