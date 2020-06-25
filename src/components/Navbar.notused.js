@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../components/Section";
+import Section from "./Section";
 import Network from "../assets/images/network.svg";
 import Globe from "../assets/images/globe.svg";
 import profile from "../assets/images/profile.svg";
