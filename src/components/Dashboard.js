@@ -1,79 +1,3 @@
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import Typography from "@material-ui/core/Typography";
-// import Button from "@material-ui/core/Button";
-// import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
-// import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   menuButton: {
-//     marginLeft: theme.spacing(4),
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-// }));
-
-// function Header(props) {
-//   const classes = useStyles();
-
-//   return (
-//     <>
-//       <AppBar position="fixed">
-//         <Toolbar>
-//           <IconButton
-//             className={classes.menuButton}
-//             color="inherit"
-//             aria-label="menu"
-//           >
-//             <MenuIcon size="large" />
-//           </IconButton>
-//           <Typography variant="h2" className={classes.title}>
-//             Flatiron Network
-//           </Typography>
-//           <Button
-//             color="inherit"
-//             onClick={() => {
-//               localStorage.removeItem("token");
-//               localStorage.removeItem("state");
-//               props.logout();
-//             }}
-//           >
-//             LogOut
-//             <ExitToAppIcon />
-//           </Button>
-//         </Toolbar>
-//       </AppBar>
-//     </>
-//   );
-// }
-
-// export default connect(null, { logout })(Header);
-
-// import React from "react";
-// import Icon from "../assets/images/logout.svg";
-
-// function Header(props) {
-//   return (
-//     <header>
-//       <h1>Flation Network</h1>
-//       {localStorage.token ? (
-//         <button
-//
-//         >
-//           <img src={Icon} alt="Logout" /> Log Out
-//         </button>
-//       ) : null}
-//     </header>
-//   );
-// }
-
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -182,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header(props) {
+function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -283,4 +207,4 @@ function Header(props) {
   );
 }
 
-export default connect(null, { logout })(Header);
+export default connect(null, { logout })(Dashboard);

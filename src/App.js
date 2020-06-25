@@ -6,7 +6,7 @@ import Authpage from "./pages/AuthPage";
 // import Networking from "./pages/Networking";
 // import Profile from "./pages/Profile";
 // import Protectedroute from "./helpers/ProtectedRoute";
-import Header from "./components/Header";
+import Dashboard from "./components/Dashboard";
 // import Navbar from "./components/Navbar.notused";
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ function App(props) {
   return (
     // <Router>
     <div className="App">
-      {props.auth ? <Header /> : <Authpage {...props} />}
+      {props.auth ? <Dashboard /> : <Authpage {...props} />}
       {/* <Switch>
           <Protectedroute path="/Map" component={Map} />
           <Protectedroute path="/Networking" component={Networking} />
