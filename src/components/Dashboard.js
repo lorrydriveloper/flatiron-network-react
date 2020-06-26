@@ -93,9 +93,9 @@ function Dashboard(props) {
 
   const handleLogout = () => {
     props.logout();
-    console.log(props);
     localStorage.removeItem("state");
     localStorage.removeItem("token");
+    props.history.push("/");
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -161,7 +161,7 @@ function Dashboard(props) {
                   <Protectedroute path="/Map" component={GoogleMap} />
                   <Protectedroute path="/Networking" component={Networking} />
                   <Protectedroute path="/Profile" component={Profile} />
-                  <Protectedroute exact path="/" component={Home} />
+                  <Protectedroute path="/" component={Home} />
                 </Switch>
               </Paper>
             </Grid>
