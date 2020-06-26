@@ -92,10 +92,10 @@ function Dashboard(props) {
   };
 
   const handleLogout = () => {
+    props.logout();
+    console.log(props);
     localStorage.removeItem("state");
     localStorage.removeItem("token");
-    props.logout();
-    console.log(localStorage);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -143,7 +143,11 @@ function Dashboard(props) {
         <Divider />
         <List>
           {links.map((link) => (
-            <Sidelink key={link.text} {...link} />
+            <Sidelink
+              key={link.text}
+              closeDrawer={handleDrawerClose}
+              link={link}
+            />
           ))}
         </List>
       </Drawer>
