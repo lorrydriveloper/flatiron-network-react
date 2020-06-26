@@ -1,7 +1,18 @@
-export default function userReducers(state = {}, action) {
-  switch (action.type) {
+export default function userReducers(
+  state = { user: {}, users: [] },
+  { type, payload }
+) {
+  switch (type) {
     case "STORAGE_USER":
-      return action.payload;
+      return {
+        ...state,
+        user: payload,
+      };
+    case "STORAGE_USERS":
+      return {
+        ...state,
+        users: payload,
+      };
 
     default:
       return state;
