@@ -10,10 +10,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import storeUser from "../actions/StoreUser";
+import { storeUser } from "../actions/StoreUser";
 import { login } from "../actions/Auth";
 import Copyright from "./Copyright";
-import { BASEURL } from "../helpers/BaseURL";
 
 const styles = (theme) => ({
   root: {
@@ -64,28 +63,15 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    let configurationObject = {
-      method: "Post",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(this.state),
-    };
-    fetch(BASEURL + "login", configurationObject)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.error) {
-          throw new Error(json.error + " " + json.message);
-        }
-        this.props.storeUser(json.user);
-        localStorage.setItem("token", json.jwt);
+
+    this.props
+      .storeUser(this.state)
+      .then(() => {
         this.props.login();
       })
       .catch((error) => {
         // TODO: change color of input and alert user of the error
         alert(error);
-        console.log(error);
       });
   };
 
