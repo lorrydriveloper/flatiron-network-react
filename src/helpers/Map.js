@@ -1,18 +1,12 @@
 class Map {
   static map;
   static markers;
-  static init(gradsArray) {
-    const mapScript = document.createElement("script");
-    mapScript.src =
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBmFg_4sF8RnPBlclqzm7SVw2w1OepZu0Q";
-    window.document.body.appendChild(mapScript);
-    mapScript.addEventListener("load", () => {
-      this.map = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: 35, lng: -50 },
-        zoom: 3,
-      });
-      this.markers = gradsArray.map(this.createMarker);
+  static init(usersArray) {
+    this.map = new window.google.maps.Map(document.getElementById("map"), {
+      center: { lat: 35, lng: -50 },
+      zoom: 3,
     });
+    this.markers = usersArray.map(this.createMarker);
   }
 
   static closeMarkers(map, markers) {
