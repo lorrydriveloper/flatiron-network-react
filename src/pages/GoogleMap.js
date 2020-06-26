@@ -4,6 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 import Map from "../helpers/Map";
 import { BASEURL } from "../helpers/BaseURL";
+import Search from "../components/Search";
+import { connect } from "react-redux";
 
 const styles = (theme) => ({
   root: {
@@ -53,18 +55,12 @@ class GoogleMap extends Component {
     return (
       <Grid container className={classes.root} spacing={2}>
         <Grid id="Search" className={classes.search} item xs={12}>
-          Search
+          <Search />
         </Grid>
-        <Grid
-          id="map"
-          ref={this.mapRef}
-          className={classes.map}
-          item
-          xs={12}
-        ></Grid>
+        <Grid id="map" className={classes.map} item xs={12}></Grid>
       </Grid>
     );
   }
 }
 
-export default withStyles(styles)(GoogleMap);
+export default connect()(withStyles(styles)(GoogleMap));
