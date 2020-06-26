@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { createRef } from "react";
+
 import Map from "../helpers/Map";
+import { BASEURL } from "../helpers/BaseURL";
 
 const styles = (theme) => ({
   root: {
-    // "background-color": "black",
     height: "100%",
   },
   map: {
-    // "background-color": "red",
     padding: theme.spacing(1),
+    height: "90%",
+  },
+  search: {
+    height: "10%",
   },
 });
 
 class GoogleMap extends Component {
   state = {
-    markers: [],
+    users: [],
   };
-  mapRef = createRef();
 
   componentDidMount() {
     this.handlefetch();
@@ -32,16 +34,25 @@ class GoogleMap extends Component {
         Authorization: `Bearer ${localStorage.token}`,
       },
     };
-    fetch("http://localhost:3001/api/v1/users", options)
+    fetch(BASEURL + "users", options)
       .then((res) => res.json())
-      .then((json) => Map.init(json));
+      .then((json) =>
+        this.setState({
+          ...this.state,
+          users: json,
+        })
+      );
   };
+
+  componentDidUpdate() {
+    Map.init(this.state.users);
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <Grid container className={classes.root} spacing={2}>
-        <Grid id="Search" className={classes.map} item sm={3} xs={12}>
+        <Grid id="Search" className={classes.search} item xs={12}>
           Search
         </Grid>
         <Grid
@@ -49,7 +60,6 @@ class GoogleMap extends Component {
           ref={this.mapRef}
           className={classes.map}
           item
-          sm={9}
           xs={12}
         ></Grid>
       </Grid>
