@@ -26,4 +26,24 @@ export const storeUser = (state) => {
   };
 };
 
-export const storeUsers = () => {};
+export const storeUsers = () => {
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
+  return (dispatch) => {
+    return fetch(BASEURL + "users", options)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.error) {
+          throw new Error(json.error + " " + json.message);
+        }
+        dispatch({
+          type: "STORAGE_USERS",
+          payload: json,
+        });
+      });
+  };
+};

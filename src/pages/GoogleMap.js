@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
+import { storeUsers } from "../actions/UsersActions";
 import Map from "../helpers/Map";
-import { BASEURL } from "../helpers/BaseURL";
+// import { BASEURL } from "../helpers/BaseURL";
 import Search from "../components/Search";
 import { connect } from "react-redux";
 
@@ -26,28 +26,20 @@ class GoogleMap extends Component {
   };
 
   componentDidMount() {
-    this.handlefetch();
+    if (this.props.users.length === 0) {
+      this.props
+        .storeUsers()
+        .then(() => {
+          Map.init(this.props.users);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      Map.init(this.props.users);
+    }
   }
 
-  handlefetch = () => {
-    const options = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-    };
-    fetch(BASEURL + "users", options)
-      .then((res) => res.json())
-      .then((json) =>
-        this.setState({
-          ...this.state,
-          users: json,
-        })
-      );
-  };
-
   componentDidUpdate() {
-    Map.init(this.state.users);
+    Map.init(this.props.users);
   }
 
   render() {
@@ -63,7 +55,9 @@ class GoogleMap extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  store: state,
+  users: state.users.users,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(GoogleMap));
+export default connect(mapStateToProps, { storeUsers })(
+  withStyles(styles)(GoogleMap)
+);
