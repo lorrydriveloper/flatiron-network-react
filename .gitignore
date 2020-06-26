@@ -1,2 +1,4 @@
 /node_modules
 .vscode/snipsnap.code-snippets
+.vscode/
+.VSCodeCounter
