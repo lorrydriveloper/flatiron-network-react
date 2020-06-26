@@ -6,8 +6,8 @@ export default function Authpage(props) {
   const [toggle, setToggle] = useState(true);
 
   return toggle ? (
-    <Login {...props} signup={setToggle} />
+    <Login {...props} toggle={setToggle} />
   ) : (
-    <SignUp {...props} login={setToggle} />
+    <SignUp {...props} toggle={setToggle} />
   );
 }
