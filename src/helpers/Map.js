@@ -2,11 +2,21 @@ class Map {
   static map;
   static markers;
   static init(usersArray) {
-    this.map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: 35, lng: -50 },
-      zoom: 3,
-    });
-    this.markers = usersArray.map(this.createMarker);
+    if (!window.google) {
+      window.addEventListener("load", () => {
+        Map.map = new window.google.maps.Map(document.getElementById("map"), {
+          center: { lat: 35, lng: -50 },
+          zoom: 3,
+        });
+        Map.markers = usersArray.map(Map.createMarker);
+      });
+    } else {
+      this.map = new window.google.maps.Map(document.getElementById("map"), {
+        center: { lat: 35, lng: -50 },
+        zoom: 3,
+      });
+      this.markers = usersArray.map(this.createMarker);
+    }
   }
 
   static closeMarkers(map, markers) {
