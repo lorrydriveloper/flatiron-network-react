@@ -10,7 +10,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { storeUser } from "../actions/StoreUser";
+import { storeUser } from "../actions/UsersActions";
 import { login } from "../actions/Auth";
 import Copyright from "./Copyright";
 

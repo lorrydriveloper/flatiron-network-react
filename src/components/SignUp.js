@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { storeUser } from "../actions/StoreUser";
+import { storeUser } from "../actions/UsersActions";
 import PersonalInfo from "../helpers/PersonalInfo";
 import LocationInfo from "../helpers/LocationInfo";
 import CohortInfo from "../helpers/CohortInfo";

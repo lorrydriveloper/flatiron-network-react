@@ -25,3 +25,5 @@ export const storeUser = (state) => {
       });
   };
 };
+
+export const storeUsers = () => {};

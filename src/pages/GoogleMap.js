@@ -62,5 +62,8 @@ class GoogleMap extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  store: state,
+});
 
-export default connect()(withStyles(styles)(GoogleMap));
+export default connect(mapStateToProps)(withStyles(styles)(GoogleMap));
