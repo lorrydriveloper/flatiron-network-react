@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(4),
-    // "background-color": "red",
   },
   paper: {
     padding: theme.spacing(2),
