@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { storeUser } from "../actions/UsersActions";
+import { storeUser, createUser } from "../actions/UsersActions";
 import PersonalInfo from "../helpers/PersonalInfo";
 import LocationInfo from "../helpers/LocationInfo";
 import CohortInfo from "../helpers/CohortInfo";
@@ -47,41 +47,9 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    let configurationObject = {
-      method: "Post",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          name: this.state.name,
-          surname: this.state.surname,
-          email: this.state.email,
-          password: this.state.password,
-          cohort_id: this.state.cohort_id,
-        },
-        location: {
-          plus_code: this.state.plus_code,
-          street: this.state.street,
-          postalcode: this.state.postalcode,
-          city: this.state.city,
-          state: this.state.state,
-          country: this.state.country,
-        },
-      }),
-    };
-    fetch(BASEURL + "sign_up", configurationObject)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.error) {
-          throw new Error(json.error + " " + json.message);
-        }
-        this.props.storeUser(json.user);
-        localStorage.setItem("token", json.jwt);
-        this.props.login();
-      })
+    this.props
+      .createUser(this.state)
+      .then(() => this.props.login())
       .catch((error) => {
         // TODO: change color of input and alert user of the error
         alert(error);
@@ -147,4 +115,4 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, { storeUser, login })(Signup);
+export default connect(null, { storeUser, login, createUser })(Signup);
