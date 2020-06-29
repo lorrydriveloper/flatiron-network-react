@@ -124,7 +124,9 @@ export default function UserCard(props) {
       <CardActions disableSpacing className={classes.social}>
         {Object.keys(social).map((item) => {
           if (social[item]) {
-            return <SocialButton socialMedia={item} url={social[item]} />;
+            return (
+              <SocialButton key={item} socialMedia={item} url={social[item]} />
+            );
           }
           return null;
         })}

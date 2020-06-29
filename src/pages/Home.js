@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
-    console.log(this.props);
     return (
       <div id="home" className="main-container">
         <h1>Welcome {this.props.user.name}</h1>
@@ -13,7 +12,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.users.user,
+  user: state.usersStore.user,
 });
 
 export default connect(mapStateToProps)(Home);
