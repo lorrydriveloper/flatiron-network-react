@@ -4,90 +4,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import { withStyles } from "@material-ui/core/styles";
 import SearchSelects from "../helpers/SearchSelects";
 import { connect } from "react-redux";
-import { filterUSers } from "../actions/UsersActions";
-
-const campus = [
-  {
-    id: 1,
-    name: "Austin Campus",
-  },
-  {
-    id: 2,
-    name: "Chicago Campus",
-  },
-  {
-    id: 3,
-    name: "Denver Campus",
-  },
-  {
-    id: 4,
-    name: "Houston Campus",
-  },
-  {
-    id: 5,
-    name: "New York Manhattan Campus",
-  },
-  {
-    id: 6,
-    name: "New York Brooklyn Campus",
-  },
-  {
-    id: 7,
-    name: "San Francisco Campus",
-  },
-  {
-    id: 8,
-    name: "Seattle Campus",
-  },
-  {
-    id: 9,
-    name: "Washington, D.C. Campus",
-  },
-  {
-    id: 10,
-    name: "London Campus",
-  },
-  {
-    id: 11,
-    name: "Online",
-  },
-];
-
-const cohorts = [
-  {
-    id: 1,
-    cohort_lead: "Alex Aguilar",
-    campus: "Online",
-    course: "Software Engineering",
-    graduation: "2020-07-01",
-  },
-  {
-    id: 2,
-    cohort_lead: "Morgan VanYperen",
-    campus: "Online",
-    course: "Software Engineering",
-    graduation: "2020-06-01",
-  },
-];
-
-const courses = [
-  {
-    id: 1,
-    title: "Software Engineering",
-  },
-  {
-    id: 2,
-    title: "Data Science",
-  },
-  {
-    id: 3,
-    title: "Cybersecurity",
-  },
-  {
-    id: 4,
-    title: "UX/UI Design",
-  },
-];
+import { filterUsers } from "../actions/UsersActions";
+import { BASEURL } from "../helpers/BaseURL";
 
 const styles = () => ({
   form: {
@@ -110,6 +28,31 @@ class Search extends Component {
     cohort: "",
     course: "",
     campus: "",
+    courses: [],
+    campuses: [],
+    cohorts: [],
+    loading: true,
+  };
+
+  componentDidMount() {
+    this.fetchFilters();
+  }
+
+  fetchFilters = async () => {
+    const cohorts = await fetch(BASEURL + "cohorts");
+    const campuses = await fetch(BASEURL + "campus");
+    const courses = await fetch(BASEURL + "courses");
+
+    const cohortsJSON = await cohorts.json();
+    const campusesJSON = await campuses.json();
+    const coursesJSON = await courses.json();
+    this.setState({
+      ...this.state,
+      cohorts: cohortsJSON,
+      courses: coursesJSON,
+      campuses: campusesJSON,
+      loading: false,
+    });
   };
 
   handleChange = (e) => {
@@ -125,7 +68,7 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.filterUSers(this.state);
+    this.props.filterUsers(this.state);
   };
 
   setSearchBy = () => {
@@ -156,24 +99,27 @@ class Search extends Component {
             type="cohort"
             onChange={this.handleChange}
             value={this.state.cohort}
-            populate={cohorts}
+            populate={this.state.cohorts}
             disabled={!!this.state.course || !!this.state.campus}
+            loading={this.state.loading}
           />
           <SearchSelects
             className={classes.searchSelect}
             type="course"
             onChange={this.handleChange}
             value={this.state.course}
-            populate={courses}
+            populate={this.state.courses}
             disabled={!!this.state.cohort}
+            loading={this.state.loading}
           />
           <SearchSelects
             className={classes.searchSelect}
             type="campus"
             onChange={this.handleChange}
             value={this.state.campus}
-            populate={campus}
+            populate={this.state.campuses}
             disabled={!!this.state.cohort}
+            loading={this.state.loading}
           />
           <Button
             onClick={this.handleSubmit}
@@ -188,4 +134,4 @@ class Search extends Component {
   }
 }
 
-export default connect(null, { filterUSers })(withStyles(styles)(Search));
+export default connect(null, { filterUsers })(withStyles(styles)(Search));
