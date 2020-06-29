@@ -6,9 +6,10 @@ export default function SearchSelects({
   onChange,
   value,
   populate,
+  disabled,
 }) {
   return (
-    <FormControl variant="outlined" className={className}>
+    <FormControl variant="outlined" className={className} disabled={disabled}>
       <InputLabel id={`${type}-label`}>
         {type.charAt(0).toUpperCase() + type.slice(1)}
       </InputLabel>
