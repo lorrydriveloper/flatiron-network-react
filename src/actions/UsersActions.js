@@ -25,19 +25,17 @@ export const createUser = (state) => {
       },
     }),
   };
-  return (dispatch) => {
-    return fetch(BASEURL + "sign_up", configurationObject)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.error) {
-          throw new Error(json.error + " " + json.message);
-        }
-        localStorage.setItem("token", json.jwt);
-        dispatch({
-          type: "CREATE_USER",
-          payload: json.user,
-        });
-      });
+  return async (dispatch) => {
+    const res = await fetch(BASEURL + "sign_up", configurationObject);
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error + " " + json.message);
+    }
+    localStorage.setItem("token", json.jwt);
+    dispatch({
+      type: "CREATE_USER",
+      payload: json.user,
+    });
   };
 };
 
@@ -51,21 +49,17 @@ export const storeUser = (state) => {
     body: JSON.stringify(state),
   };
 
-  return (dispatch) => {
-    return fetch(BASEURL + "login", configurationObject)
-      .then((res) => res.json())
-      .then((json) => {
-        if (json.error) {
-          throw new Error(json.error + " " + json.message);
-        }
-
-        localStorage.setItem("token", json.jwt);
-        debugger;
-        dispatch({
-          type: "STORAGE_USER",
-          payload: json.user,
-        });
-      });
+  return async (dispatch) => {
+    const res = await fetch(BASEURL + "login", configurationObject);
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error + " " + json.message);
+    }
+    localStorage.setItem("token", json.jwt);
+    dispatch({
+      type: "STORAGE_USER",
+      payload: json.user,
+    });
   };
 };
 
@@ -76,18 +70,22 @@ export const storeUsers = () => {
       Authorization: `Bearer ${localStorage.token}`,
     },
   };
-  return (dispatch) => {
-    return fetch(BASEURL + "users", options)
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        if (json.error) {
-          throw new Error(json.error + " " + json.message);
-        }
-        dispatch({
-          type: "STORAGE_USERS",
-          payload: json,
-        });
-      });
+  return async (dispatch) => {
+    const res = await fetch(BASEURL + "users", options);
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error + " " + json.message);
+    }
+    dispatch({
+      type: "STORAGE_USERS",
+      payload: json,
+    });
+  };
+};
+
+export const filterUSers = (filters) => {
+  return {
+    type: "FILTER_USERS",
+    payload: filters,
   };
 };
