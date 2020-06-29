@@ -3,6 +3,8 @@ import { Paper, Button, FormControl } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { withStyles } from "@material-ui/core/styles";
 import SearchSelects from "../helpers/SearchSelects";
+import { connect } from "react-redux";
+import { filterUSers } from "../actions/UsersActions";
 
 const campus = [
   {
@@ -111,14 +113,19 @@ class Search extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    //callback SetSearchBy wait for new state to be
+    // set to searchBy bases in previous state.
+    this.setState(
+      {
+        [e.target.name]: e.target.value,
+      },
+      this.setSearchBy
+    );
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setSearchBy();
+    this.props.filterUSers(this.state);
   };
 
   setSearchBy = () => {
@@ -181,4 +188,4 @@ class Search extends Component {
   }
 }
 
-export default withStyles(styles)(Search);
+export default connect(null, { filterUSers })(withStyles(styles)(Search));
