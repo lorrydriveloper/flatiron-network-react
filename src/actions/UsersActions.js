@@ -83,7 +83,7 @@ export const storeUsers = () => {
   };
 };
 
-export const filterUSers = (filters) => {
+export const filterUsers = (filters) => {
   return {
     type: "FILTER_USERS",
     payload: filters,
