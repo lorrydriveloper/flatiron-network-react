@@ -1,6 +1,11 @@
+import UserCard from "../components/UserCard";
+import ReactDOMServer from "react-dom/server";
+import React from "react";
+
 class Map {
   static map;
   static markers;
+
   static init(usersArray) {
     if (!window.google) {
       window.addEventListener("load", () => {
@@ -25,7 +30,7 @@ class Map {
       marker.infowindow.close(map, marker);
     });
   }
-  static createMarker({ address: { latitude, longitude }, name }) {
+  static createMarker(user) {
     let icon = {
       url:
         "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/999/s200/flatironschool.png", // url
@@ -34,15 +39,15 @@ class Map {
       anchor: new window.google.maps.Point(0, 0), // anchor
     };
     const infowindow = new window.google.maps.InfoWindow({
-      content: "hola",
+      content: ReactDOMServer.renderToString(<UserCard {...user} />),
     });
     let marker = new window.google.maps.Marker({
       position: {
-        lat: latitude,
-        lng: longitude,
+        lat: user.address.latitude,
+        lng: user.address.longitude,
       },
       map: Map.map,
-      title: name,
+      title: user.name,
       infowindow: infowindow,
       icon: icon,
     });
