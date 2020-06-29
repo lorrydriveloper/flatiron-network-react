@@ -13,7 +13,7 @@ const styles = (theme) => ({
   },
   map: {
     padding: theme.spacing(1),
-    height: "90%",
+    height: "85%",
   },
   search: {
     height: "10%",
@@ -21,10 +21,6 @@ const styles = (theme) => ({
 });
 
 class GoogleMap extends Component {
-  state = {
-    users: [],
-  };
-
   componentDidMount() {
     if (this.props.users.length === 0) {
       this.props
@@ -39,7 +35,7 @@ class GoogleMap extends Component {
   }
 
   componentDidUpdate() {
-    Map.init(this.props.users);
+    Map.init(this.props.filterUsers);
   }
 
   render() {
@@ -55,7 +51,8 @@ class GoogleMap extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  users: state.users.users,
+  users: state.usersStore.users,
+  filterUsers: state.usersStore.filterUsers,
 });
 
 export default connect(mapStateToProps, { storeUsers })(
