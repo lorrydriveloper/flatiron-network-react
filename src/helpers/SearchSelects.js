@@ -7,11 +7,12 @@ export default function SearchSelects({
   value,
   populate,
   disabled,
+  loading,
 }) {
   return (
     <FormControl variant="outlined" className={className} disabled={disabled}>
       <InputLabel id={`${type}-label`}>
-        {type.charAt(0).toUpperCase() + type.slice(1)}
+        {loading ? "Loading..." : type.charAt(0).toUpperCase() + type.slice(1)}
       </InputLabel>
       <Select
         labelId={`${type}-label`}
