@@ -104,6 +104,7 @@ const styles = () => ({
 
 class Search extends Component {
   state = {
+    searchBy: "all",
     cohort: "",
     course: "",
     campus: "",
@@ -117,7 +118,25 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.setSearchBy();
+  };
+
+  setSearchBy = () => {
+    if (this.state.cohort) {
+      this.setState({
+        searchBy: "cohort",
+      });
+    } else {
+      if (!!this.state.campus && !!this.state.course) {
+        this.setState({ searchBy: "course & campus" });
+      } else if (!!this.state.campus && !this.state.course) {
+        this.setState({ searchBy: "campus" });
+      } else if (!this.state.campus && !!this.state.course) {
+        this.setState({ searchBy: "course" });
+      } else {
+        this.setState({ searchBy: "all" });
+      }
+    }
   };
 
   render() {
@@ -131,6 +150,7 @@ class Search extends Component {
             onChange={this.handleChange}
             value={this.state.cohort}
             populate={cohorts}
+            disabled={!!this.state.course || !!this.state.campus}
           />
           <SearchSelects
             className={classes.searchSelect}
@@ -138,6 +158,7 @@ class Search extends Component {
             onChange={this.handleChange}
             value={this.state.course}
             populate={courses}
+            disabled={!!this.state.cohort}
           />
           <SearchSelects
             className={classes.searchSelect}
@@ -145,6 +166,7 @@ class Search extends Component {
             onChange={this.handleChange}
             value={this.state.campus}
             populate={campus}
+            disabled={!!this.state.cohort}
           />
           <Button
             onClick={this.handleSubmit}
