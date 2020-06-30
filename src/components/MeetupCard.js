@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 345,
     height: 475,
+    boxShadow: `4px 5px 15px #00000040,0px 4px 4px #00000040;`,
   },
   media: {
     height: 0,
@@ -44,7 +45,7 @@ export default function MeetupCard({
       rel="noopener"
       className={classes.link}
     >
-      <Card className={classes.root} boxShadow={3}>
+      <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar

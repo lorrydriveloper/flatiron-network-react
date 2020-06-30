@@ -12,6 +12,7 @@ const styles = () => ({
   header: {
     paddingBottom: 10,
     textAlign: "center",
+    fontWeight: 700,
   },
 });
 
@@ -21,7 +22,7 @@ class Networking extends Component {
     return (
       <>
         <Typography className={classes.header} variant="h4">
-          Good Place to Networking
+          Good Places to Networking
         </Typography>
         <Grid container className={classes.root} spacing={2}>
           {FakeApiCall.map((meetup) => {
