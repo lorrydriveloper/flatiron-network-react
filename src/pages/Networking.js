@@ -6,7 +6,6 @@ import MeetupCard from "../components/MeetupCard.js";
 
 const styles = () => ({
   root: {
-    background: "red",
     height: "100%",
     overflow: "auto",
   },
