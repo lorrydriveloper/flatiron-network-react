@@ -1,33 +1,22 @@
-import "./assets/styles/main.scss";
 import React from "react";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import Authpage from "./pages/AuthPage";
-import Map from "./pages/Map";
-import Networking from "./pages/Networking";
-import Profile from "./pages/Profile";
-import Protectedroute from "./helpers/ProtectedRoute";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
+
+import Dashboard from "./components/Dashboard";
 import { connect } from "react-redux";
 
 function App(props) {
   return (
     <Router>
       <div className="App">
-        <Route component={Header} />
-        {props.auth ? <Navbar /> : null}
-        <Switch>
-          <Protectedroute path="/Map" component={Map} />
-          <Protectedroute path="/Networking" component={Networking} />
-          <Protectedroute path="/Profile" component={Profile} />
+        {props.auth ? (
           <Route
-            path="/"
-            render={(props) =>
-              localStorage.token ? <Home {...props} /> : <Authpage {...props} />
-            }
+            render={(routeProps) => <Dashboard {...props} {...routeProps} />}
           />
-        </Switch>
+        ) : (
+          <Authpage {...props} />
+        )}
       </div>
     </Router>
   );
