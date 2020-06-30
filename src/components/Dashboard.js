@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+    backgroundColor: "#ffffffe1",
   },
   fixedHeight: {
     height: "80vh",
