@@ -1,6 +1,7 @@
 import UserCard from "../components/UserCard";
 import ReactDOMServer from "react-dom/server";
 import React from "react";
+import flatironIcon from "../assets/images/flatironIcon.png";
 
 class Map {
   static map;
@@ -32,8 +33,7 @@ class Map {
   }
   static createMarker(user) {
     let icon = {
-      url:
-        "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/999/s200/flatironschool.png", // url
+      url: flatironIcon, // url
       scaledSize: new window.google.maps.Size(18, 18), // scaled size
       origin: new window.google.maps.Point(0, 0), // origin
       anchor: new window.google.maps.Point(0, 0), // anchor

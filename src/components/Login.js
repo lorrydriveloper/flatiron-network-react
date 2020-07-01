@@ -63,7 +63,6 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.props
       .storeUser(this.state)
       .then(() => {
