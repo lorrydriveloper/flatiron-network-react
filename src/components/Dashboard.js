@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   paper: {
+    position: "relative",
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffffffe1",
   },
   fixedHeight: {
-    height: "80vh",
+    height: "82vh",
   },
 }));
 
@@ -135,6 +136,14 @@ function Dashboard(props) {
       <Drawer open={open}>
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              Flatiron Network
+            </Typography>
             <ChevronLeftIcon />
           </IconButton>
         </div>
