@@ -33,14 +33,14 @@ const links = [
   { image: HomeIcon, text: "home", link: "/" },
   { image: GlobeIcon, text: "find collegues", link: "/map" },
   { image: NetworkIcon, text: "networking", link: "/networking" },
-  { image: ProfileIcon, text: "profiles", link: "/profile" },
+  { image: ProfileIcon, text: "You profile", link: "/profile" },
 ];
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    textDecoration: "none",
   },
-
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 8px",
     ...theme.mixins.toolbar,
   },
-
   menuButton: {
     marginRight: 36,
   },
@@ -58,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
