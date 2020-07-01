@@ -48,7 +48,6 @@ class Profile extends Component {
       .updateUser(this.state)
       .then(() => {
         // prompt user with a modal or somethin similar
-        console.log(this.props.store);
         alert("user updated");
       })
       .catch((err) => alert(err));
@@ -105,7 +104,6 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.usersStore.user,
-  store: state,
 });
 
 export default connect(mapStateToProps, { updateUser })(
