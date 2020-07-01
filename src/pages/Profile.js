@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Typography, withStyles, Grid, Paper, Button } from "@material-ui/core";
+import { Typography, withStyles, Grid, Button, Box } from "@material-ui/core";
 import Editpersonalinfo from "../helpers/EditPersonalInfo";
 import Editsocialmedia from "../helpers/EditSocialMedia";
 import EditCompanyInfo from "../helpers/EditCompanyInfo";
+import EditLocation from "../helpers/EditLocation";
+import EditIcon from "@material-ui/icons/Edit";
+import { updateUser } from "../actions/UsersActions";
 
 const styles = (theme) => ({
   header: {
@@ -17,12 +20,31 @@ const styles = (theme) => ({
     textAlign: "center",
     overflowY: "hidden",
   },
+  box: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "baseline",
+  },
+  button: {
+    background: "#6fbf73",
+    marginLeft: 15,
+    "&:hover": {
+      background: "#357a38",
+    },
+  },
 });
 
 class Profile extends Component {
   state = {
     ...this.props.user,
     ...this.props.user.social,
+    ...this.props.user.address,
+    ...this.props.user.company,
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.updateUser(this.state);
   };
 
   handleChange = (e) => {
@@ -35,10 +57,20 @@ class Profile extends Component {
     const { classes } = this.props;
     return (
       <>
-        <Typography className={classes.header} variant="h4">
-          Add Your Last updates
-          <Button> UPDATE</Button>
-        </Typography>
+        <Box className={classes.box}>
+          <Typography className={classes.header} variant="h4">
+            Add Your Last updates
+          </Typography>
+          <Button
+            variant="contained"
+            size="small"
+            className={classes.button}
+            startIcon={<EditIcon />}
+            onClick={this.handleSubmit}
+          >
+            Save
+          </Button>
+        </Box>
 
         <Grid
           container
@@ -53,7 +85,7 @@ class Profile extends Component {
             <Editpersonalinfo {...this.props} {...this.state} />
           </Grid>
           <Grid item md={6} xs={12}>
-            <Paper className={classes.paper} elevation={12}></Paper>
+            <EditLocation {...this.props} {...this.state} />
           </Grid>
           <Grid item md={6} xs={12}>
             <EditCompanyInfo {...this.props} {...this.state} />
@@ -68,4 +100,6 @@ const mapStateToProps = (state) => ({
   user: state.usersStore.user,
 });
 
-export default connect(mapStateToProps, {})(withStyles(styles)(Profile));
+export default connect(mapStateToProps, { updateUser })(
+  withStyles(styles)(Profile)
+);
