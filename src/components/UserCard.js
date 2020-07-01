@@ -64,7 +64,7 @@ export default function UserCard(props) {
     surname,
     avatar,
     social,
-    company,
+    company: { company_name },
     cohort: {
       course: { title },
       campus,
@@ -117,7 +117,7 @@ export default function UserCard(props) {
                 <WorkIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={company} />
+            <ListItemText primary={company_name} />
           </ListItem>
         </List>
       </CardContent>
