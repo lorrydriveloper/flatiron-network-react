@@ -44,7 +44,14 @@ class Profile extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.updateUser(this.state);
+    this.props
+      .updateUser(this.state)
+      .then(() => {
+        // prompt user with a modal or somethin similar
+        console.log(this.props.store);
+        alert("user updated");
+      })
+      .catch((err) => alert(err));
   };
 
   handleChange = (e) => {
@@ -98,6 +105,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.usersStore.user,
+  store: state,
 });
 
 export default connect(mapStateToProps, { updateUser })(
