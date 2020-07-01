@@ -23,7 +23,13 @@ export default function userReducers(
         ...state,
         filterUsers: filterUsers(state.users, payload),
       };
-
+    case "UPDATE_USERS":
+      return {
+        ...state,
+        user: payload,
+        // force in GoogleMap other fetch to see the new changes.
+        users: [],
+      };
     default:
       return state;
   }
