@@ -21,7 +21,7 @@ import SchoolIcon from "@material-ui/icons/School";
 const useStyles = makeStyles({
   root: {
     position: "relative",
-    background: "#f5f",
+    background: "linear-gradient(to top,#1a8a9d,  #00d2c8)",
     height: 325,
     width: 300,
     display: "flex",
