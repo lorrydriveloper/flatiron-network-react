@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, Typography, Grid, TextField } from "@material-ui/core";
 
-export default function Editpersonalinfo({ classes, name, surname }) {
+export default function Editpersonalinfo({ classes, logo, company_name }) {
   return (
     <Paper className={classes.paper} elevation={12}>
       <Typography variant="h5">Your Place of Work</Typography>
@@ -13,7 +13,7 @@ export default function Editpersonalinfo({ classes, name, surname }) {
             fullWidth
             id="company_name"
             label="Your Company"
-            value={name}
+            value={company_name}
           />
         </Grid>
         <Grid item xs={12}>
@@ -22,8 +22,8 @@ export default function Editpersonalinfo({ classes, name, surname }) {
             variant="outlined"
             fullWidth
             id="logo"
-            label="Your Comapny Logo"
-            value="{logo}"
+            label="Your Company Logo"
+            value={logo}
             placeholder="https://blablabla.com"
           />
         </Grid>
