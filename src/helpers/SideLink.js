@@ -21,7 +21,7 @@ export default function Sidelink({ link: { image, text, link }, closeDrawer }) {
       <ListItem button>
         <ListItemIcon>
           <Icon>
-            <img src={image} alt={text} />
+            <img src={image} alt={text} height={"24px"} />
           </Icon>
         </ListItemIcon>
         <ListItemText primary={text.toUpperCase()} />
