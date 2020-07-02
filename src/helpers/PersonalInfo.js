@@ -45,7 +45,7 @@ export default function SignUp(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Personal info
         </Typography>
         <div className={classes.form} onChange={props.onChange}>
           <Grid container spacing={2}>
