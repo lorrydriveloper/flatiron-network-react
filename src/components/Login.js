@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
@@ -15,11 +14,6 @@ import { login } from "../actions/Auth";
 import Copyright from "./Copyright";
 
 const styles = (theme) => ({
-  root: {
-    height: "90vh",
-    "align-content": "center",
-    padding: 90,
-  },
   image: {
     backgroundImage: "url(sdn.jpg)",
     backgroundRepeat: "no-repeat",
@@ -77,8 +71,7 @@ class Login extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container component="main" className={classes.root}>
-        <CssBaseline />
+      <>
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
@@ -141,7 +134,7 @@ class Login extends Component {
             </form>
           </div>
         </Grid>
-      </Grid>
+      </>
     );
   }
 }
