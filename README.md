@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Flatrion network
 
-In the project directory, you can run:
+[Backend](https://github.com/reddevilcero/flatiron-network-api) - The API repository.
 
-### `yarn start`
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+  
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app pretends to be the place where Flatiron students and alumni can find each other and some useful resources to improve networking.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Motivation
 
-### `yarn test`
+I always thought that it is not easy to find Flatiron Grads
+to share its knowledge and advice. There are a lot of social media with different habits for each individual, some like more Facebook over Twitter (or vice versa), or they prefer Instagram or Slack, or they are Strong on LinkedIn or YouTube. Still, none are on the same page, and you don't know who was doing the same path as you some the advice of a Data Science sure doesn't apply for aUX/UI designer and so on.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 
 
-### `yarn build`
+## Built With
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Framewor used [Material UI](https://material-ui.com/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-### `yarn eject`
+> To get started...
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Step 1
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Option 1**
+    - 🍴 Fork this repo!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Option 2**
+    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Step 2
 
-## Learn More
+- **HACK AWAY!** 🔨🔨🔨
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Step 3
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 🔃 Create a new pull request.
 
-### Code Splitting
+## Support
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Reach out to me at one of the following places!
 
-### Analyzing the Bundle Size
+- Website at <a href="http://www.lorrydriveloper.com" target="_blank">`lorrydriveloper.com`</a>
+- Twitter at <a href="http://twitter.com/lorrydriveloper" target="_blank">`@lorrydriveloper`</a>
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Author
 
-### Making a Progressive Web App
+* **Pedro D. Garcia Lopez** - *Initial work* - [Reddevilcero](https://github.com/Reddevilcero)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-### Advanced Configuration
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
