@@ -23,6 +23,12 @@ export default function userReducers(
         ...state,
         filterUsers: filterUsers(state.users, payload),
       };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: payload,
+        users: [],
+      };
 
     default:
       return state;

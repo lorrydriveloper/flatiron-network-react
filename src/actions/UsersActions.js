@@ -122,7 +122,7 @@ export const updateUser = (state) => {
       throw new Error(json.error + " " + json.message);
     }
     dispatch({
-      type: "STORAGE_USER",
+      type: "UPDATE_USER",
       payload: json.user,
     });
   };

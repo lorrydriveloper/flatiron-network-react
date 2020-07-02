@@ -3,7 +3,6 @@ import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { storeUsers } from "../actions/UsersActions";
 import Map from "../helpers/Map";
-// import { BASEURL } from "../helpers/BaseURL";
 import Search from "../components/Search";
 import { connect } from "react-redux";
 
