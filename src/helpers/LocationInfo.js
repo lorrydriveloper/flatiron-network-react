@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp(props) {
   const classes = useStyles();
 
-  const { plus_code, street, postcode, city, state, country } = props.values;
+  const { street, postcode, city, state, country } = props.values;
 
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
@@ -45,10 +45,14 @@ export default function SignUp(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Your location
+        </Typography>
+        <Typography component="p">
+          You can be as specific or general as you want.
         </Typography>
         <div className={classes.form} onChange={props.onChange}>
           <Grid container spacing={2}>
+            {/* To be implement with reverse Geo location
             <Grid item xs={12} sm={6}>
               <TextField
                 name="plus_code"
@@ -60,8 +64,8 @@ export default function SignUp(props) {
               />
             </Grid>
             <h4>Plus code</h4>
+          <div className="separator">OR</div> */}
             <Grid item xs={12}>
-              <div className="separator">OR</div>
               <TextField
                 variant="outlined"
                 fullWidth
@@ -76,6 +80,7 @@ export default function SignUp(props) {
               <TextField
                 variant="outlined"
                 fullWidth
+                required
                 name="postcode"
                 label="Postcode"
                 id="postcode"
@@ -90,6 +95,7 @@ export default function SignUp(props) {
                 name="city"
                 label="City"
                 id="city"
+                required
                 autoComplete="city"
                 value={city}
               />
@@ -101,6 +107,7 @@ export default function SignUp(props) {
                 name="state"
                 label="State"
                 id="state"
+                required
                 autoComplete="state"
                 value={state}
               />
@@ -112,6 +119,7 @@ export default function SignUp(props) {
                 name="country"
                 label="Country"
                 id="country"
+                required
                 autoComplete="country"
                 value={country}
               />

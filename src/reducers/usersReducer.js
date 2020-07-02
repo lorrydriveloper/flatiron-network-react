@@ -27,7 +27,6 @@ export default function userReducers(
       return {
         ...state,
         user: payload,
-        // force in GoogleMap other fetch to see the new changes.
         users: [],
       };
     default:
