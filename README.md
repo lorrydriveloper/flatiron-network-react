@@ -39,11 +39,19 @@ If you have any problem configuring the project don't hesitate to contact me
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - Framework used [Material UI](https://material-ui.com/)
 
+## Instalation
+
+```
+ npm install
+```
+
+```
+npm start
+```
+
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-> To get started...
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
 
 ### Step 1
 
