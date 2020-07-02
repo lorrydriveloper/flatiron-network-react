@@ -29,7 +29,6 @@ export default function userReducers(
         user: payload,
         users: [],
       };
-
     default:
       return state;
   }

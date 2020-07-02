@@ -28,7 +28,7 @@ export default function DevSection({ city, icon, temp, description, loading }) {
           </Typography>
           <div className={classes.backWeather}>
             <img
-              src={`http://openweathermap.org/img/wn/${icon}@4x.png`}
+              src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
               alt="actual weather icon"
             />
             <Typography variant="h3">{`${temp.toFixed(1)} °C`}</Typography>
