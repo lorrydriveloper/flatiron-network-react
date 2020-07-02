@@ -30,6 +30,11 @@ class Signup extends Component {
       [e.target.name]: e.target.value,
     });
   };
+  handleCohortChange = (value) => {
+    this.setState({
+      cohort_id: value,
+    });
+  };
 
   nextStep = () => {
     this.setState({
@@ -96,7 +101,7 @@ class Signup extends Component {
             toggle={this.props.toggle}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
-            onChange={this.handleChange}
+            onCohortChange={this.handleCohortChange}
             onSubmit={this.handleSubmit}
             values={this.state}
           />
