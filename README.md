@@ -15,6 +15,8 @@ This app pretends to be the place where Flatiron students and alumni can find ea
 I always thought that it is not easy to find Flatiron Grads
 to share its knowledge and advice. There are a lot of social media with different habits for each individual, some like more Facebook over Twitter (or vice versa), or they prefer Instagram or Slack, or they are Strong on LinkedIn or YouTube. Still, none are on the same page, and you don't know who was doing the same path as you some the advice of a Data Science sure doesn't apply for aUX/UI designer and so on.
 
+You can read the blog I write about the motivation of this app [here](https://dev.to/lorrydriveloper/flatiron-network-1kpo)
+
 ## Prerequisites
 
 You should you should apply for your keys to use on your forked project as the one used in this project are restricted or setup via .env
