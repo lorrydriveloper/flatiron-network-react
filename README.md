@@ -37,7 +37,7 @@ If you have any problem configuring the project don't hesitate to contact me
 ## Built With
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- Framewor used [Material UI](https://material-ui.com/)
+- Framework used [Material UI](https://material-ui.com/)
 
 ## Contributing
 
@@ -52,7 +52,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
   - 🍴 Fork this repo!
 
 - **Option 2**
-  - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
+  - 👯 Clone this repo to your local machine using `https://github.com/reddevilcero/flatiron-network-react.git`
 
 ### Step 2
 
