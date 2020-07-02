@@ -3,14 +3,13 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import InputLabel from "@material-ui/core/InputLabel";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp(props) {
   const classes = useStyles();
-  const { cohort_id, cohorts } = props.values;
+  const { cohorts } = props.values;
+  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = React.useState(cohorts[0].id);
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
       <CssBaseline />
@@ -52,28 +53,38 @@ export default function SignUp(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Which was your cohort?
         </Typography>
         <div className={classes.form} onChange={props.onChange}>
           <Grid container spacing={2}>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="cohort">You Cohort</InputLabel>
-              <Select
-                labelId="cohort"
+              {/* <InputLabel id="cohort">You Cohort</InputLabel> */}
+              <Autocomplete
                 id="cohort_id"
                 name="cohort_id"
-                value={cohort_id}
-                onChange={props.onChange}
-                label="Select You Cohort"
-              >
-                {cohorts.map(
-                  ({ id, cohort_lead, campus, course, graduation }) => (
-                    <MenuItem key={id} value={id}>
-                      {`${course} with ${cohort_lead} an finished on ${graduation} at campus: ${campus}`}
-                    </MenuItem>
-                  )
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                onChange={(event, newValue) => {
+                  if (newValue) {
+                    setValue(newValue.id);
+                    props.onCohortChange(value);
+                  } else {
+                    setValue(null);
+                  }
+                }}
+                options={cohorts}
+                getOptionLabel={_formatCohortString}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Cohort"
+                    variant="outlined"
+                    placeholder="try to type your cohort lead or campus"
+                  />
                 )}
-              </Select>
+              />
             </FormControl>
           </Grid>
 
@@ -108,3 +119,6 @@ export default function SignUp(props) {
     </Container>
   );
 }
+
+const _formatCohortString = ({ cohort_lead, campus, course, graduation }) =>
+  `${course} with ${cohort_lead} an finished on ${graduation} at campus: ${campus}`;
