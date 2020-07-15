@@ -4,14 +4,19 @@ import "./assets/styles/main.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
 import { loadState, saveState } from "./helpers/localStorage";
+import { createStore, applyMiddleware, compose } from "redux";
 
 const persistedState = loadState();
-const store = createStore(rootReducer, persistedState, applyMiddleware(thunk));
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  persistedState,
+  composeEnhancers(applyMiddleware(thunk))
+);
 store.subscribe(() => {
   saveState(store.getState());
 });
